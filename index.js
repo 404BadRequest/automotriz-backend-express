@@ -1,10 +1,16 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 
+/*function logger(req, res, next){
+    console.log(`Route received: ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    next();
+}*/
 app.use(express.json());
+app.use(morgan('dev'));
 
 
-app.get("/", (req, res) => {
+app.get("/user", (req, res) => {
     res.send("Hello World");
 });
 
@@ -14,7 +20,7 @@ app.post("/user/:id", (req, res) => {
     res.send("Welcome to world");
 });
 
-app.put("/test", (req, res) => {
+app.put("/user/:id", (req, res) => {
     res.send("<h1>Test<h1>");
 });
 
